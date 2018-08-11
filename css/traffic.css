@@ -1,0 +1,86 @@
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 300px 300px 300px 1fr;
+      grid-template-columns: 1fr 300px 300px 300px 1fr;
+  grid-gap: 30px;
+  -ms-grid-rows: 150px 250px 1fr;
+      grid-template-rows: 150px 250px 1fr;
+  height: 100vh;
+}
+
+.traTitle {
+  color: #DA4453;
+  font-weight: 900;
+  font-size: 2em;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+  text-align: center;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+.traBox {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.traBox img {
+  width: 150px;
+}
+
+.traBox__way {
+  width: 150px;
+  height: 40px;
+  color: #ffa;
+  background: #000;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.4em;
+}
+
+.traBox:hover {
+  outline: 3px solid;
+}
+
+.traBox.box1 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+.traBox.box2 {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+}
+
+.traBox.box3 {
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+}
+
+.traText {
+  background: #ced4da;
+  display: none;
+  grid-column: 2/-2;
+  grid-row: -2/-1;
+}

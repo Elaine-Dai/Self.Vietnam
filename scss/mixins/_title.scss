@@ -1,0 +1,6 @@
+@mixin title($fsize) {
+    color: rgb(182, 5, 5);
+    font-weight: 900;
+    font-size: $fsize*1em;
+    margin: 0;
+}

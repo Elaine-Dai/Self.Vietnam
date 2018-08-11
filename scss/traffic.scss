@@ -1,0 +1,56 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 300px 300px 300px 1fr;
+    grid-gap: 30px;
+    grid-template-rows: 150px 250px 1fr;
+    height: 100vh;
+}
+
+@import "_all.scss";
+.traTitle {
+    color: $grapefruit;
+    font-weight: 900;
+    font-size: 2em;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    text-align: center;
+    transform: translateY(100%);
+}
+
+.traBox {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    img {
+        width: 150px;
+    }
+    &__way {
+        @include size(150px, 40px);
+        color: #ffa;
+        background: #000;
+        text-align: center;
+        line-height: 40px;
+        font-size: 1.4em;
+    }
+    &:hover {
+        outline: 3px solid;
+    }
+    &.box1 {
+        grid-column: 2/3;
+    }
+    &.box2 {
+        grid-column: 3/4;
+    }
+    &.box3 {
+        grid-column: 4/5;
+    }
+}
+
+.traText {
+    background: $primary;
+    display: none;
+    grid-column: 2/-2;
+    grid-row: -2/-1;
+}

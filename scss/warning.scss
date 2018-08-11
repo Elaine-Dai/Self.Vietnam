@@ -1,0 +1,43 @@
+@import "_all.scss";
+main {
+    display: flex;
+    justify-content: space-between;
+    height: 100VH;
+}
+
+.warningBox {
+    flex: 1;
+    background: $secondary;
+    outline: 1px solid black;
+    display: grid;
+    grid-template-rows: 1fr 2fr 4fr;
+    h1 {
+        text-align: center;
+        margin: 0 auto 0 auto;
+        grid-row: 2/3;
+        background: $sand;
+        max-height: 80px;
+        width: 200px;
+        line-height: 80px;
+        border-radius: 50%;
+    }
+    p {
+        margin-left: 10%;
+        grid-row: 3/4;
+        font-size: 1em;
+        font-weight: 900;
+        line-height: 1.8em;
+    }
+    //for js
+    &.open {
+        background: $primary;
+        transition: 1.5s;
+        flex: 5;
+        word-break: keep-all;
+        &>h1 {
+            transition: all 1s;
+            width: 350px;
+            border-radius: 0%;
+        }
+    }
+}

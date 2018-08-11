@@ -1,0 +1,55 @@
+@import "_all.scss";
+.Carousel {
+    &__item {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); //切三等分讓文字區域去中間那塊 
+        height: 100vh;
+        img {
+            position: absolute;
+            z-index: -1; //把圖片放到底層 
+            height: 100vh;
+            filter: contrast(70%);
+        }
+    }
+    &__text {
+        text-align: center;
+        grid-column: 2/3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        &__where {
+            font-weight: 600;
+            font-size: 3em;
+        }
+        a {
+            background: black;
+            color: $primary;
+            text-align: center;
+            line-height: 70px;
+            border-radius: 5px;
+            font-size: 2em;
+            transition: .5s;
+            &:hover {
+                color: lighten($primary, 50%);
+                background: lighten(black, 20%);
+            }
+        }
+    }
+}
+
+//因為html元素b用不到 我把他設為左右控制紐元素
+b {
+    top: 50%;
+    transform: translateY(-50%);
+    //垂直置中
+    color: $primary;
+    background: black;
+    position: absolute;
+    font-size: 5em;
+    height: 1.5em;
+    cursor: pointer;
+    user-select: none; //不想被反白
+    &:last-child {
+        right: 0;
+    }
+}
