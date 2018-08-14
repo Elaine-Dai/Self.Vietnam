@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <!-- <---------------------->
+<!-------------------------------------------------------------->
     <header>
 
         <div class="logo">
@@ -23,7 +23,7 @@
         </div>
         <div class="cover"><img src="../images/BigImg.jpg"></div>
     </header>
-    <!-- <---------------------->
+<!-------------------------------------------------------------->
     <aside>
         <div class="aside">
 
@@ -41,7 +41,8 @@
             </div>
         </div>
     </aside>
-    <!-- ------------------------------>
+<!-------------------------------------------------------------->
+<!-------------------------------------------------------------->
 
     <main>
     <?php
@@ -51,10 +52,6 @@
     $password="imd10446";
     $dbname="Vietnam";
 
-
-
-
-
     $conn = mysqli_connect($servername, $username, $password,$dbname);
     if(!$conn){
         die("Connection failed");
@@ -63,33 +60,10 @@
     mysqli_query($conn,"SET NAMES UTF8");
 
 
-    //select
-
-
-    
-    // //spot
-    // $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,spottraffic,spotIongitude,spotLatitude FROM spot";
-    // $result=$conn->query($sql);
-    // if ($result->num_rows > 0) {
-    //     // output data of each row
-    //     while($row = $result->fetch_assoc()) {
-            
-    //         $spotid=$row['spotid'];
-    //         $spotname=$row['spotname'];
-    //         $spotaddress=$row['spotadresss'];
-    //         $spotdetail=$row['spotdetail'];
-    //         $spotpicture=$row['spotpicture'];
-    //         $spottraffic=$row['spottraffic'];
-    //         $spotIongitude=$row['spotIongitude'];
-    //         $spotLatitude=$row['spotLatitude'];
-
-    //     }
-
-
-    // }
 
     ?>
-
+<!-------------------------------------------------------------->
+<!---regon/city選單迴圈------------------------------------------>
         <div class="selection">
         <form>
         <select>
@@ -117,9 +91,46 @@ html;
         </select>
         </form>
         </div>
+<!-------------------------------------------------------------->
+        <div class="tour">
+        <div class="tour__spot spot_1">
+
+        <?php
+        //spot
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,spottraffic,spotIongitude,spotLatitude FROM spot";
+        $result=$conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                
+                $spotid=$row['spotid'];
+                $spotname=$row['spotname'];
+                $spotaddress=$row['spotaddress'];
+                $spotdetail=$row['spotdetail'];
+                $spotpicture=$row['spotpicture'];
+                $spottraffic=$row['spottraffic'];
+                $spotIongitude=$row['spotIongitude'];
+                $spotLatitude=$row['spotLatitude'];
+
+                echo <<<html
+                <a href="./children.html">
+                <p class="tour__spot__text">查看更多</p>
+                <img src="../images/ss1.jpg">
+                <h2> $spotname</h2>
+                </a>
+html;
+
+            }
+
+
+        }
 
 
 
+        ?>
+        </div>
+
+<!-------------------------------------------------------------->
     </main>
 
 
