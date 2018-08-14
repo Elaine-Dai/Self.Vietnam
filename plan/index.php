@@ -34,12 +34,12 @@
             <div class="nav">
 
                 <button class="nav__button nav__button_close"></button>
-                <a class="nav__login" href="../Login.html">登入</a>
+                <a class="nav__login" href="../Login.php">登入</a>
 
-                <a class="nav__item" href="../tour/index.html">行程介紹</a>
-                <a class="nav__item" href="../traffic/index.html">交通</a>
-                <a class="nav__item" href="../warning/index.html">風俗習慣</a>
-                <a class="nav__item" href="../plan/index.html">行程規劃</a>
+                <a class="nav__item" href="../tour/index.php">行程介紹</a>
+                <a class="nav__item" href="../traffic/index.php">交通</a>
+                <a class="nav__item" href="../warning/index.php">風俗習慣</a>
+                <a class="nav__item" href="../plan/index.php">行程規劃</a>
             </div>
         </div>
     </aside>
