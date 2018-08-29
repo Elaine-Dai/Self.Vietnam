@@ -72,7 +72,7 @@
 <!-------------------------------------------------------------->
         <?php
         //spot
-        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,bus,plane,taxi,motorcycle,train,spotIongitude,spotLatitude FROM spot where spotid='$spotpage'";
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,bus,plane,taxi,motorcycle,train,spotmap FROM spot where spotid='$spotpage'";
         $result=$conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
@@ -83,8 +83,7 @@
                 $spotaddress=$row['spotaddress'];
                 $spotdetail=$row['spotdetail'];
                 $spotpicture=$row['spotpicture'];
-                $spotIongitude=$row['spotIongitude'];
-                $spotLatitude=$row['spotLatitude'];
+                $spotmap=$row['spotmap'];
                 if ($row['bus'] == 1){
                     $bus="公車";
                 }
@@ -162,7 +161,7 @@ echo <<<html
 
 
         <div class="sceneMap">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.485533802853!2d103.83964606523705!3d22.33528854726742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc5cc7ac1cceb1050!2sNotre+Dame+Cathedral!5e0!3m2!1szh-TW!2stw!4v1531725723296"></iframe>
+            $spotmap 
         </div>
 
 
