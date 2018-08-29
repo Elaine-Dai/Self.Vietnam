@@ -1,3 +1,22 @@
+<?php
+    //connect
+    $servername="ms.ntub.edu.tw";//localhost
+    $username="Vietnam";
+    $password="imd10446";
+    $dbname="Vietnam";
+
+    $conn = mysqli_connect($servername, $username, $password,$dbname);
+    if(!$conn){
+        die("Connection failed");
+    }
+    // echo "connect successfuly";
+    mysqli_query($conn,"SET NAMES UTF8");
+
+    $spotpage = $_GET['spotpage'];
+    // echo $spotpage;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,28 +65,73 @@
 
 <!-- ------------------------------>
 <!-- connect db------------------------------>
-<?php
+<!-------------------------------------------------------------->
 
-
-$servername = "localhost"; //ms.ntub.edu.tw
-$username="Vietnam";
-$password="imd10446";
-$dbname="vietnam";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-echo "Connected successfully";
-
-
-
-?>
-<!-- ------------------------------>
     <main>
+
+<!-------------------------------------------------------------->
+        <?php
+        //spot
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,bus,plane,taxi,motorcycle,train,spotIongitude,spotLatitude FROM spot where spotid='$spotpage'";
+        $result=$conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                
+                $spotid=$spotpage;
+                $spotname=$row['spotname'];
+                $spotaddress=$row['spotaddress'];
+                $spotdetail=$row['spotdetail'];
+                $spotpicture=$row['spotpicture'];
+                $spotIongitude=$row['spotIongitude'];
+                $spotLatitude=$row['spotLatitude'];
+                if ($row['bus'] == 1){
+                    $bus="公車";
+                }
+                else{
+                    $bus="";
+                }
+
+                if ($row['plane'] == 1){
+                    $plane="飛機";
+                }
+                else{
+                    $plane="";
+                }
+
+                if ($row['taxi'] == 1){
+                    $taxi="計程車";
+                }
+                else{
+                    $taxi="";
+                }
+
+                if ($row['motorcycle'] == 1){
+                    $motorcycle="摩托車";
+                }
+                else{
+                    $motorcycle="";
+                }
+
+                if ($row['train'] == 1){
+                    $train="火車";
+                }
+                else{
+                    $train="";
+                }
+
+            }
+
+
+        }
+    
+
+
+
+echo <<<html
+        
+
+<!-------------------------------------------------------------->
 
         <!--===============套用owl-carousel插件====================-->
         <div class="sceneShow">
@@ -89,8 +153,8 @@ echo "Connected successfully";
                     <img src="../images/4.jpg" alt="越南景點">
                 </div>
             </div>
-            <span class="text__title">沙壩教堂</span>
-            <p>Sa Pa, 沙壩縣老街 越南</p>
+            <span class="text__title"> $spotname </span>
+                <p> $spotaddress </p>
 
         </div>
         <!--===================================-->
@@ -106,21 +170,22 @@ echo "Connected successfully";
 
         <div class="sceneInfo sceneText">
 
-            <p class="text__title">沙壩教堂小介紹</p>
-            <p class="sceneText__content">位於越南最高城鎮：沙壩鎮市中心的石教堂是越南最高海拔的教堂，因海拔高緣故，教堂常被雲霧包圍，顯得其莊嚴神秘。石教堂是沙壩居民的信仰中心，許多居民會在傍晚時到教堂望彌撒，使用的語言不是京族話，而是當地方言。除此之外，教堂前面的廣場常舉辦各類活動，也是當地人的聚會場所。</p>
+            <p class="text__title"> $spotname"小介紹" </p>
+            <p class="sceneText__content"> $spotdetail </p>
 
         </div>
 
 
         <div class="sceneTraffic sceneText">
 
-            <p class="text__title">建議交通</p>
-            <p class="sceneText__content">沒有從河內直達沙壩的汽車，需要到北河或老​​街轉車。老街距離河內340公里，每天有兩列火車開往河內，車費15美元，需要10-12小時。老街火車站有開往河內的長途汽車，車費5,3000盾，需要10小時。到了老街後，每天有數班往返於老街口岸和沙壩的小型長途班車，車費2,5000越南盾，1.5小時。</p>
+            <p class="text__title">交通</p>
+            <p class="sceneText__content"> $bus $plane $taxi $motorcycle $train</p>
+            
 
         </div>
 
-
-
+html;
+        ?>
 
         <!--===================================-->
 

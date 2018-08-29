@@ -77,47 +77,89 @@
                 $region=$row['region'];
                 $city=$row['city'];
                 
-                echo<<<html
-                
-                <optgroup label="$region">
-                <option value="city"> $city </option>
-                </optgroup>
-                
+ 
+                    echo <<<html
+                    <optgroup label="$region">
+                    <option value="city"> $city </option>
+                    </optgroup>
 html;
-            }
-        }
+                
 
+            }
+
+        }
+        // <optgroup label="$regionname">
+        // <option value="city"> $city </option>
+        // </optgroup>
 ?>  
         </select>
         </form>
         </div>
 <!-------------------------------------------------------------->
         <div class="tour">
-        <div class="tour__spot spot_1">
+        
 
         <?php
+
         //spot
-        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,spottraffic,spotIongitude,spotLatitude FROM spot";
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,bus,plane,taxi,motorcycle,train,spotIongitude,spotLatitude FROM spot where spotid='$spotpage'";
         $result=$conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 
-                $spotid=$row['spotid'];
+                $spotid=$spotpage;
                 $spotname=$row['spotname'];
                 $spotaddress=$row['spotaddress'];
                 $spotdetail=$row['spotdetail'];
                 $spotpicture=$row['spotpicture'];
-                $spottraffic=$row['spottraffic'];
                 $spotIongitude=$row['spotIongitude'];
                 $spotLatitude=$row['spotLatitude'];
+                if ($row['bus'] == 1){
+                    $bus="公車";
+                }
+                else{
+                    $bus="";
+                }
+
+                if ($row['plane'] == 1){
+                    $plane="飛機";
+                }
+                else{
+                    $plane="";
+                }
+
+                if ($row['taxi'] == 1){
+                    $taxi="計程車";
+                }
+                else{
+                    $taxi="";
+                }
+
+                if ($row['motorcycle'] == 1){
+                    $motorcycle="摩托車";
+                }
+                else{
+                    $motorcycle="";
+                }
+
+                if ($row['train'] == 1){
+                    $train="火車";
+                }
+                else{
+                    $train="";
+                }
+
 
                 echo <<<html
-                <a href="./children.html">
+                
+                <div class="tour__spot spot_1">
+                <a href="./children.php?spotpage=$spotid">
                 <p class="tour__spot__text">查看更多</p>
                 <img src="../images/ss1.jpg">
-                <h2> $spotname</h2>
+                <h2>$spotname</h2>
                 </a>
+                </div>
 html;
 
             }
