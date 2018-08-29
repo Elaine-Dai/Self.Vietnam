@@ -12,16 +12,16 @@
 </head>
 
 <body>
-    <header>
+<header>
 
-        <div class="logo">
-            <a class="logo__link" href="index.html">
-                <img src="images/logo.jpg" class="logo__img">
-                <div class="logo__text">Self.Vietnam</div>
-            </a>
-        </div>
+<div class="logo">
+    <a class="logo__link" href="../index.php">
+        <img src="../images/logo.jpg" class="logo__img">
+        <div class="logo__text">Self.Vietnam</div>
+    </a>
+</div>
 
-    </header>
+</header>
     <!-- <---------------------->
     <aside>
         <div class="aside">

@@ -36,7 +36,7 @@
     <header>
 
         <div class="logo">
-            <a class="logo__link" href="../index.html">
+            <a class="logo__link" href="../index.php">
                 <img src="../images/logo.jpg" class="logo__img">
                 <div class="logo__text">Self.Vietnam</div>
             </a>
@@ -72,7 +72,7 @@
 <!-------------------------------------------------------------->
         <?php
         //spot
-        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,bus,plane,taxi,motorcycle,train,spotmap FROM spot where spotid='$spotpage'";
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,ship,foot,bus,plane,taxi,motorcycle,train,spotmap FROM spot where spotid='$spotpage'";
         $result=$conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
@@ -119,6 +119,19 @@
                     $train="";
                 }
 
+                if($row['ship'] == 1){
+                    $ship="搭船";
+                }
+                else{
+                    $ship="";
+                }
+
+                if($row['foot'] == 1){
+                    $foot="步行";
+                }
+                else{
+                    $foot="";
+                }
             }
 
 
@@ -178,7 +191,7 @@ echo <<<html
         <div class="sceneTraffic sceneText">
 
             <p class="text__title">交通</p>
-            <p class="sceneText__content"> $bus $plane $taxi $motorcycle $train</p>
+            <p class="sceneText__content"> $bus $plane $taxi $motorcycle $train $ship $foot </p>
             
 
         </div>

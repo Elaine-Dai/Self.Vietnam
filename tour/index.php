@@ -19,7 +19,7 @@
     <header>
 
         <div class="logo">
-            <a class="logo__link" href="../index.html">
+            <a class="logo__link" href="../index.php">
                 <img src="../images/logo.jpg" class="logo__img">
                 <div class="logo__text">Self.Vietnam</div>
             </a>
@@ -47,6 +47,28 @@
 
 
     <!-- ------------------------------>
+    <!-------------------------------------------------------------->
+
+    <main>
+    <?php
+    //connect
+    $servername="ms.ntub.edu.tw";//localhost
+    $username="Vietnam";
+    $password="imd10446";
+    $dbname="Vietnam";
+
+    $conn = mysqli_connect($servername, $username, $password,$dbname);
+    if(!$conn){
+        die("Connection failed");
+    }
+    // echo "connect successfuly";
+    mysqli_query($conn,"SET NAMES UTF8");
+
+    $areapage = $_GET['areapage'];
+    // echo $areapage;
+
+    ?>
+<!-------------------------------------------------------------->
     <main>
         <div class="Carousel__control"></div>
 
@@ -60,36 +82,10 @@
                     <div class="Carousel__text">
 
                         <p class="Carousel__text__where">北部</p>
-                        <a href="./child.php" class="Carousel_link">點此進入</a>
+                        <a href="./child.html" class="Carousel_link">點此進入</a>
                     </div>
                 </div>
 
-            </div>
-
-
-            <div class="Carousel item">
-                <!-- owl插件指定滑動區域 -->
-                <div class="Carousel__item">
-                    <img src="../images/s2.jpg" alt="越南景點">
-                    <div class="Carousel__text">
-
-                        <p class="Carousel__text__where">中部</p>
-                        <a href="./child.php" class="Carousel_link">點此進入</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="Carousel item">
-                <!-- owl插件指定滑動區域 -->
-                <div class="Carousel__item">
-                    <img src="../images/s3.jpg" alt="越南景點">
-                    <div class="Carousel__text">
-
-                        <p class="Carousel__text__where">南部</p>
-                        <a href="./child.php" class="Carousel_link">點此進入</a>
-                    </div>
-                </div>
             </div>
 
         </div>

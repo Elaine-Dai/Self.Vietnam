@@ -16,7 +16,7 @@
     <header>
 
         <div class="logo">
-            <a class="logo__link" href="../index.html">
+            <a class="logo__link" href="../index.php">
                 <img src="../images/logo.jpg" class="logo__img">
                 <div class="logo__text">Self.Vietnam</div>
             </a>

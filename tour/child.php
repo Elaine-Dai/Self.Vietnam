@@ -16,7 +16,7 @@
     <header>
 
         <div class="logo">
-            <a class="logo__link" href="../index.html">
+            <a class="logo__link" href="../index.php">
                 <img src="../images/logo.jpg" class="logo__img">
                 <div class="logo__text">Self.Vietnam</div>
             </a>
@@ -59,42 +59,43 @@
     // echo "connect successfuly";
     mysqli_query($conn,"SET NAMES UTF8");
 
-
+    $areapage = $_GET['areapage'];
+    // echo $areapage;
 
     ?>
 <!-------------------------------------------------------------->
 <!---regon/city選單迴圈------------------------------------------>
-        <div class="selection">
-        <form>
-        <select>
-        <?php 
+<div class="selection"> 
+<?php 
 
-        $sql="SELECT areaid,region,city FROM area";
-        $result=$conn->query($sql);
-        if ($result->num_rows > 0){
-            while($row = $result->fetch_assoc()) {
-                $areaid=$row['areaid'];
-                $region=$row['region'];
-                $city=$row['city'];
-                
- 
-                    echo <<<html
-                    <optgroup label="$region">
-                    <option value="city"> $city </option>
-                    </optgroup>
+$sql="SELECT areaid,regionid,region,city FROM area WHERE regionid='$areapage'";
+$result=$conn->query($sql);
+if ($result->num_rows > 0){
+    while($row = $result->fetch_assoc()) {
+        $areaid=$row['areaid'];
+        $city=$row['city'];
+        $regionid=$areapage;
+        $region=$row['region'];
+
+            echo <<<html
+           
+            <ul>
+                <li class="selection__item selection__All">所有城市</li>
+                <li class="selection__item"> $city </li>
+            </ul>
+        
 html;
-                
+        
+    
+        
+        
 
-            }
+    }
 
-        }
-        // <optgroup label="$regionname">
-        // <option value="city"> $city </option>
-        // </optgroup>
+}
+
 ?>  
-        </select>
-        </form>
-        </div>
+
 <!-------------------------------------------------------------->
         <div class="tour">
         
@@ -102,19 +103,19 @@ html;
         <?php
 
         //spot
-        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,bus,plane,taxi,motorcycle,train,spotIongitude,spotLatitude FROM spot where spotid='$spotpage'";
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,ship,foot,bus,plane,taxi,motorcycle,train,spotmap FROM spot where regionid='$regionid'";
         $result=$conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 
-                $spotid=$spotpage;
+                
+                $spotid=$row['spotid'];
                 $spotname=$row['spotname'];
                 $spotaddress=$row['spotaddress'];
                 $spotdetail=$row['spotdetail'];
                 $spotpicture=$row['spotpicture'];
-                $spotIongitude=$row['spotIongitude'];
-                $spotLatitude=$row['spotLatitude'];
+                $spotmap=$row['spotmap'];
                 if ($row['bus'] == 1){
                     $bus="公車";
                 }
@@ -149,6 +150,21 @@ html;
                 else{
                     $train="";
                 }
+
+                if($row['ship'] == 1){
+                    $ship="搭船";
+                }
+                else{
+                    $ship="";
+                }
+
+                if($row['foot'] == 1){
+                    $foot="步行";
+                }
+                else{
+                    $foot="";
+                }
+
 
 
                 echo <<<html
