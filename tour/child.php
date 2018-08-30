@@ -66,6 +66,7 @@
 <!-------------------------------------------------------------->
 <!---regon/city選單迴圈------------------------------------------>
 <div class="selection"> 
+    
 <?php 
 
 $sql="SELECT areaid,regionid,region,city FROM area WHERE regionid='$areapage'";

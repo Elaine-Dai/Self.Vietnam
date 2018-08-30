@@ -64,13 +64,32 @@
     // echo "connect successfuly";
     mysqli_query($conn,"SET NAMES UTF8");
 
-    $areapage = $_GET['areapage'];
-    // echo $areapage;
 
     ?>
 <!-------------------------------------------------------------->
+<?php 
+
+$sql="SELECT areaid,regionid,region,city FROM area WHERE regionid='$areapage'";
+$result=$conn->query($sql);
+if ($result->num_rows > 0){
+    while($row = $result->fetch_assoc()) {
+        $areaid=$row['areaid'];
+        $city=$row['city'];
+        $regionid=$row['regionid'];
+        $region=$row['region'];
+    }
+
+}
+else{
+    echo "";
+}
+
+?> 
+
+<!-------------------------------------------------------------->
     <main>
         <div class="Carousel__control"></div>
+
 
 
         <!--===============套用owl-carousel插件====================-->
@@ -82,7 +101,7 @@
                     <div class="Carousel__text">
 
                         <p class="Carousel__text__where">北部</p>
-                        <a href="./child.html" class="Carousel_link">點此進入</a>
+                        <a href="./child.html?areapage=1" class="Carousel_link">點此進入</a>
                     </div>
                 </div>
 
