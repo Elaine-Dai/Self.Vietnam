@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!-- <---------------------->
+    <!-- <---------_-------------------->
     <header>
 
         <div class="logo">
@@ -46,10 +46,15 @@
     </aside>
 
 
-    <!-- ------------------------------>
+
     <!-------------------------------------------------------------->
 
     <main>
+        <div class="Carousel__control"></div>
+        <div class="owl-carousel owl-theme">
+
+
+    <!-- ------------------------------------------------------------>
     <?php
     //connect
     $servername="ms.ntub.edu.tw";//localhost
@@ -67,50 +72,82 @@
 
     ?>
 <!-------------------------------------------------------------->
-<?php 
+<?php
+$sql = "SELECT areaid,regionid,region,city FROM area";
+$result = mysqli_query($conn, $sql);
 
-$sql="SELECT areaid,regionid,region,city FROM area WHERE regionid='$areapage'";
-$result=$conn->query($sql);
-if ($result->num_rows > 0){
-    while($row = $result->fetch_assoc()) {
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
         $areaid=$row['areaid'];
         $city=$row['city'];
-        $regionid=$row['regionid'];
-        $region=$row['region'];
-    }
 
-}
-else{
-    echo "";
-}
-
-?> 
-
-<!-------------------------------------------------------------->
-    <main>
-        <div class="Carousel__control"></div>
-
-
-
-        <!--===============套用owl-carousel插件====================-->
-        <div class="owl-carousel owl-theme">
+        if($row['regionid']==1){
+            $areapage=1;
+            $region="北部";
+            echo <<<html
+            <!-- owl插件指定滑動區域 -->
             <div class="Carousel item">
-                <!-- owl插件指定滑動區域 -->
                 <div class="Carousel__item">
                     <img src="../images/s1.jpg" alt="越南景點">
                     <div class="Carousel__text">
 
                         <p class="Carousel__text__where">北部</p>
-                        <a href="./child.html?areapage=1" class="Carousel_link">點此進入</a>
+                        <a href="../tour/child.php?areapage="$areapage" class="Carousel_link">點此進入</a>
                     </div>
                 </div>
+                </div>
+html;
 
+        }else{
+            $areapage=2;
+            $region="中部";
+            echo <<<html
+            <!-- owl插件指定滑動區域 -->
+            <div class="Carousel item">
+            <div class="Carousel__item">
+                <img src="../images/s1.jpg" alt="越南景點">
+                <div class="Carousel__text">
+
+                    <p class="Carousel__text__where">中部</p>
+                    <a href="../tour/child.php?areapage=$areapage" class="Carousel_link">點此進入</a>
+                </div>
+            </div>
             </div>
 
+html;
+        }else{
+            $areapage=3;
+            $region="南部";
+
+            echo <<<html
+            <!-- owl插件指定滑動區域 -->
+            <div class="Carousel item">
+            <div class="Carousel__item">
+                <img src="../images/s1.jpg" alt="越南景點">
+                <div class="Carousel__text">
+
+                    <p class="Carousel__text__where">南部</p>
+                    <a href="../tour/child.php?areapage=$areapage" class="Carousel_link">點此進入</a>
+                </div>
+            </div>
+            </div>
+html;
+        }
+            }
+        } else {
+            echo "0 results";
+        }
+html;
+        ?>
+<!-------------------------------------------------------------->
+
+
+
+
         </div>
-        <!--===================================-->
 
-
+</div>
     </main>
 
     <!-- ------------------------------>

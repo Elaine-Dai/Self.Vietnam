@@ -59,31 +59,31 @@
     // echo "connect successfuly";
     mysqli_query($conn,"SET NAMES UTF8");
 
-    $areapage = $_GET['areapage'];
+    // $areapage = $_GET['areapage'];
     // echo $areapage;
 
     ?>
 <!-------------------------------------------------------------->
 <!---regon/city選單迴圈------------------------------------------>
 <div class="selection"> 
-    
+     <ul>
+     <li class="selection__item selection__All">所有城市</li>    
 <?php 
 
-$sql="SELECT areaid,regionid,region,city FROM area WHERE regionid='$areapage'";
+$sql="SELECT areaid,regionid,region,city FROM area  ";//where regionid='$areapage'
 $result=$conn->query($sql);
 if ($result->num_rows > 0){
     while($row = $result->fetch_assoc()) {
         $areaid=$row['areaid'];
         $city=$row['city'];
-        $regionid=$areapage;
+        $regionid=$row['regionid'];//areapage;
         $region=$row['region'];
 
             echo <<<html
            
-            <ul>
-                <li class="selection__item selection__All">所有城市</li>
+
                 <li class="selection__item"> $city </li>
-            </ul>
+            
         
 html;
         
@@ -96,7 +96,8 @@ html;
 }
 
 ?>  
-
+</ul>
+</div>
 <!-------------------------------------------------------------->
         <div class="tour">
         
@@ -104,13 +105,13 @@ html;
         <?php
 
         //spot
-        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,ship,foot,bus,plane,taxi,motorcycle,train,spotmap FROM spot where regionid='$regionid'";
+        $sql="SELECT spotid,spotname,spotaddress,spotdetail,spotpicture,ship,foot,bus,plane,taxi,motorcycle,train,spotmap FROM spot ";//where regionid='$regionid'
         $result=$conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 
-                
+               
                 $spotid=$row['spotid'];
                 $spotname=$row['spotname'];
                 $spotaddress=$row['spotaddress'];
