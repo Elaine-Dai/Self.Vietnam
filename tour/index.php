@@ -49,9 +49,6 @@
 
     <!-------------------------------------------------------------->
 
-    <main>
-        <div class="Carousel__control"></div>
-        <div class="owl-carousel owl-theme">
 
 
     <!-- ------------------------------------------------------------>
@@ -61,93 +58,71 @@
     $username="Vietnam";
     $password="imd10446";
     $dbname="Vietnam";
-
     $conn = mysqli_connect($servername, $username, $password,$dbname);
     if(!$conn){
         die("Connection failed");
     }
     // echo "connect successfuly";
     mysqli_query($conn,"SET NAMES UTF8");
-
-
     ?>
 <!-------------------------------------------------------------->
 <?php
 $sql = "SELECT areaid,regionid,region,city FROM area";
 $result = mysqli_query($conn, $sql);
-
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         $areaid=$row['areaid'];
         $city=$row['city'];
+        $region=$row['region'];
+        $regionid=$row['regionid'];
+        ?>
+<!-------------------------------------------------------------->
+<main>
+        <div class="Carousel__control"></div>
+        <div class="owl-carousel owl-theme">
 
-        if($row['regionid']==1){
-            $areapage=1;
-            $region="北部";
-            echo <<<html
-            <!-- owl插件指定滑動區域 -->
+
             <div class="Carousel item">
+                <!-- owl插件指定滑動區域 -->
                 <div class="Carousel__item">
                     <img src="../images/s1.jpg" alt="越南景點">
                     <div class="Carousel__text">
 
                         <p class="Carousel__text__where">北部</p>
-                        <a href="../tour/child.php?areapage="$areapage" class="Carousel_link">點此進入</a>
+                        <a href="./child.php" class="Carousel_link">點此進入</a>
                     </div>
                 </div>
-                </div>
-html;
 
-        }else{
-            $areapage=2;
-            $region="中部";
-            echo <<<html
-            <!-- owl插件指定滑動區域 -->
+            </div>
+
+
             <div class="Carousel item">
-            <div class="Carousel__item">
-                <img src="../images/s1.jpg" alt="越南景點">
-                <div class="Carousel__text">
+                <!-- owl插件指定滑動區域 -->
+                <div class="Carousel__item">
+                    <img src="../images/s2.jpg" alt="越南景點">
+                    <div class="Carousel__text">
 
-                    <p class="Carousel__text__where">中部</p>
-                    <a href="../tour/child.php?areapage=$areapage" class="Carousel_link">點此進入</a>
+                        <p class="Carousel__text__where">中部</p>
+                        <a href="./child.php" class="Carousel_link">點此進入</a>
+                    </div>
                 </div>
             </div>
-            </div>
 
-html;
-        }else{
-            $areapage=3;
-            $region="南部";
 
-            echo <<<html
-            <!-- owl插件指定滑動區域 -->
             <div class="Carousel item">
-            <div class="Carousel__item">
-                <img src="../images/s1.jpg" alt="越南景點">
-                <div class="Carousel__text">
+                <!-- owl插件指定滑動區域 -->
+                <div class="Carousel__item">
+                    <img src="../images/s3.jpg" alt="越南景點">
+                    <div class="Carousel__text">
 
-                    <p class="Carousel__text__where">南部</p>
-                    <a href="../tour/child.php?areapage=$areapage" class="Carousel_link">點此進入</a>
+                        <p class="Carousel__text__where">南部</p>
+                        <a href="./child.php" class="Carousel_link">點此進入</a>
+                    </div>
                 </div>
             </div>
-            </div>
-html;
-        }
-            }
-        } else {
-            echo "0 results";
-        }
-html;
-        ?>
-<!-------------------------------------------------------------->
-
-
-
 
         </div>
-
-</div>
     </main>
 
     <!-- ------------------------------>
